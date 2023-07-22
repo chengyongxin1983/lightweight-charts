@@ -1,7 +1,9 @@
 {
 	"extends": "./tsconfig.options.json",
 	"compilerOptions": {
-		"noEmit": true
+		"noEmit": true,
+		"sourceMap": true,
+		"outDir": "dist",
 	},
 	"include": [
 		"src/**/*.ts",
