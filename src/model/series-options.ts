@@ -3,6 +3,7 @@ import { DeepPartial } from '../helpers/strict-type-checks';
 import { LineStyle, LineType, LineWidth } from '../renderers/draw-line';
 
 import { AutoScaleMargins } from './autoscale-info-impl';
+import { Pane } from './pane';
 import { PriceFormatterFn } from './price-formatter-fn';
 
 /**
@@ -660,6 +661,8 @@ type AutoscaleInfoProvider = (baseImplementation: () => AutoscaleInfo | null) =>
  * Represents options common for all types of series
  */
 export interface SeriesOptionsCommon {
+
+	pane:Pane|undefined;
 	/**
 	 * Visibility of the label with the latest visible price on the price scale.
 	 *

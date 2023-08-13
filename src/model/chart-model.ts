@@ -390,8 +390,6 @@ export class ChartModel implements IDestroyable {
 
 		this.createPane();
 
-		// for quant
-		this.createPane(1);
 		this._panes[0].setStretchFactor(DEFAULT_STRETCH_FACTOR * 2);
 
 		this._backgroundTopColor = this._getBackgroundColor(BackgroundColorSide.Top);
@@ -770,7 +768,20 @@ export class ChartModel implements IDestroyable {
 	}
 
 	public createSeries<T extends SeriesType>(seriesType: T, options: SeriesOptionsMap[T], customPaneView?: ICustomSeriesPaneView): Series<T> {
-		const pane = this._panes[this._serieses.length];
+		let pane = options.pane;
+
+		if (pane == null)
+		{	
+			if (this._panes.length - 1 < this._serieses.length )
+			{			
+				this.createPane(this._panes.length);
+			}
+			
+			pane = this._panes[this._serieses.length];
+
+		}
+
+	
 		const series = this._createSeries(options, seriesType, pane, customPaneView);
 		this._serieses.push(series);
 
