@@ -768,17 +768,23 @@ export class ChartModel implements IDestroyable {
 	}
 
 	public createSeries<T extends SeriesType>(seriesType: T, options: SeriesOptionsMap[T], customPaneView?: ICustomSeriesPaneView): Series<T> {
-		let pane = options.pane;
+		let panenumber = options.pane;
 
-		if (pane == null)
+		let pane = null
+		if (panenumber == -1)
 		{	
+			pane = this._panes[0];
+			
+
+		}
+		else
+		{			
 			if (this._panes.length - 1 < this._serieses.length )
 			{			
 				this.createPane(this._panes.length);
 			}
 			
-			pane = this._panes[this._serieses.length];
-
+			pane = this._panes[this._panes.length - 1];
 		}
 
 	

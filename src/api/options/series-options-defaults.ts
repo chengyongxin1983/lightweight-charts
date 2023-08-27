@@ -105,7 +105,7 @@ export const customStyleDefaults: CustomStyleOptions = {
 
 export const seriesOptionsDefaults: SeriesOptionsCommon = {
 	
-	pane:undefined,
+	pane:-1,
 	title: '',
 	visible: true,
 	lastValueVisible: true,
