@@ -23,6 +23,13 @@ export function walkLine<TItem extends LinePoint, TStyle extends CanvasRendering
 
 	const { context: ctx, horizontalPixelRatio, verticalPixelRatio } = renderingScope;
 
+	if (lineType == LineType.Segment) {            
+        if (visibleRange.from % 2 == 1)
+        {
+            visibleRange.from = visibleRange.from - 1;
+        }
+    }
+
 	const firstItem = items[visibleRange.from];
 	let currentStyle = styleGetter(renderingScope, firstItem);
 	let currentStyleFirstItem = firstItem;
@@ -83,6 +90,19 @@ export function walkLine<TItem extends LinePoint, TStyle extends CanvasRendering
 					);
 					break;
 				}
+
+				case LineType.Segment:
+                    {
+                        if (i % 2 == 1)
+                        {
+                            ctx.lineTo(currentItem.x * horizontalPixelRatio, currentItem.y * verticalPixelRatio);
+                        }
+                        else 
+                        {                            
+                            ctx.moveTo(currentItem.x * horizontalPixelRatio, currentItem.y * verticalPixelRatio);
+                        }
+                        break;
+                    }
 			}
 
 			if (lineType !== LineType.WithSteps && itemStyle !== currentStyle) {
