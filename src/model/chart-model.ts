@@ -389,6 +389,7 @@ export class ChartModel implements IDestroyable {
 		this._watermark = new Watermark(this, options.watermark);
 
 		this.createPane();
+		this.createPane(1);
 
 		this._panes[0].setStretchFactor(DEFAULT_STRETCH_FACTOR * 2);
 
